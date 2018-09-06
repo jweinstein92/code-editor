@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   editor.addEventListener('keyup', e => {
     currentWord = handleKeyPress(currentWord, e);
-    console.log(currentWord);
     let matches = checkTypeAhead(currentWord);
     generateTypeahead(matches);
 
@@ -38,12 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let matches = typeaheadKeys.filter(key => key.startsWith(currentWord));
 
     if (currentWord[currentWord.length - 1] === '.') {
-      // Check for existing objects
-      // let objectName = currentWord.slice(0, currentWord.length-1);
-      // let regex = new RegExp('\{([^}]+)\}',"g");
-      // let object = editor.value.match(regex);
-      // console.log(objectName);
-      // console.log(object);
+
     }
     return matches;
   }
@@ -57,13 +51,13 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   })();
 
+  // Generate the output HTML
   function generateOutput() {
     const editor = document.getElementById('editor');
     const output = document.getElementById('output');
     const rows = editor.value.split(/\n/);
     const endingCharacters = [';', ':', ',', '(', ')'];
-
-
+    // Remove output HTML
     while (output.firstChild) {
       output.removeChild(output.firstChild);
     }
@@ -71,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
       let div = document.createElement('div');
       let padding = row.match(/^[ ]+/g) || [""];
       // Regex to get words separated by spaces other than those in quotation marks
-      let words = row.match(/(\".*?\"|\'.*?\'|[^"\s]+)+(?=\s*|\s*$)/g) || [""];
+      let words = row.match(/(\".*?\"|\'.*?\'|[^\s]+)+(?=\s*|\s*$)/g) || [""];
 
       // Add padding to front of div
       let paddingSpan = document.createElement('span');
@@ -114,6 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Create the typeahead options in the HTML
   function generateTypeahead(matches) {
     let popover = document.getElementById('popover');
     while (popover.firstChild) {
