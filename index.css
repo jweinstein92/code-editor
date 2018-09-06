@@ -1,0 +1,39 @@
+.page-wrapper {
+  margin: 20px;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+#editor {
+  height: 500px;
+  width: 750px;
+  max-height: 500px;
+  max-width: 750px;
+  border: 1px solid black;
+  overflow: auto;
+  white-space: nowrap;
+  margin-right: 20px;
+}
+
+span {
+  white-space: pre-wrap;
+}
+
+.keyword {
+  color: purple;
+}
+
+.string {
+  color: #bcbc25;
+}
+
+.number {
+  color: orange;
+}
+
+.typeahead {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
